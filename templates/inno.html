@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            p.about, p.research, p.howto {
+                display: inline;
+            }
+            p.about {
+                margin-left: 200px;
+            }
+            p.research {
+                margin-left: 320px;
+            }
+            p.howto {
+                margin-left: 350px;
+            }
+            .parent {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .child {
+                display: inline-block;
+                position: relative;
+            }
+            [class*="col-"] {
+                width: 100%;
+            }
+            @media only screen and (min-width: 1250px) {
+                .col-1 {width: 8.33%;}
+                .col-2 {width: 16.66%;}
+                .col-3 {width: 25%;}
+                .col-4 {width: 33.33%;}
+                .col-5 {width: 41.66%;}
+                .col-6 {width: 50%;}
+                .col-7 {width: 58.33%;}
+                .col-8 {width: 66.66%;}
+                .col-9 {width: 75%;}
+                .col-10 {width: 83.33%;}
+                .col-11 {width: 91.66%;}
+                .col-12 {width: 100%;}
+            }
+            a:link {
+                text-decoration: none;
+                color: white;
+            }
+
+            a:visited {
+                text-decoration: none;
+                color: white;
+            }
+
+            a:hover {
+                text-decoration: underline;
+                color: rgb(110, 133, 183);
+            }
+
+            a:active {
+            text-decoration: underline;
+            color: white;
+            }
+        </style>
+        <script>
+            function previewFile() {
+                var preview = document.querySelector('img');
+                var file    = document.querySelector('input[type=file]').files[0];
+                var reader  = new FileReader();
+
+                reader.onloadend = function () {
+                preview.src = reader.result;
+            }
+
+            if (file) {
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+            }
+            }
+        </script>
+        <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@300&display=swap" rel="stylesheet">
+        <title>Chest X-ray classification</title>
+    </head>
+    <body style="background-color:rgb(178, 200, 223); color:rgb(13, 53, 138); font-family: 'Chakra Petch', sans-serif;">
+        <div class="headline">
+            <p class="about"><a href="about"><small>เกี่ยวกับโรค</small></a></p>
+            <p class="research"><a href="research"><small>แหล่งอ้างอิง</small></a></p>
+            <p class="howto"><a href="howto"><small>วิธีใช้งาน</small></a></p>
+        </div>
+        <hr>
+        <br>
+        <h4 style="text-align: center; font-size:30px">Chest X-ray classification</h1>
+        <p style="text-align: center;">เว็บแยกโรคจากภาพรังสีทรวงอก 13 โรค</p>
+        <div class="upload-section">
+            <div class="upload-file">
+                <form class = "file-form" action="/success" method="post", enctype="multipart/form-data">
+                    <input class="file-form-input" type="file" , name = "file"/>
+                    <button class="btn btn-success btn-lg">Upload</button> 
+                </form>
+            </div>
+            <div class="uploadOR">
+                <span>OR</span>
+            </div>
+            <div class="upload-link">
+                <form class = "link-form" action="/success" method="post", enctype="multipart/form-data">
+                    <input class="link-form-input" type="text" ,maxlength="1000" , name = "link" placeholder="Paste the image URL(not the site address)"/>
+                    <button class="btn btn-success btn-lg">Proceed</button> 
+                </form>
+            </div>
+            <div class = "header-content-sub">
+                    <p style = "text-align: center; margin-top: 15px;color: red" class="header-content-info">{{error}}</p>
+            </div>
+        </div>
+        <!-- <form method="post" action="/" enctype="multipart/form-data">
+            <label for="img">กรุณาเลือกรูปภาพที่ต้องการ : </label>
+            <input class="form-control" type="file" onchange="previewFile()">
+            <input class="btn btn-primary mt-3" type="submit" value="Predict Image">
+            <br>
+            <div style="text-align:center;">
+                <img src="" height="300">
+            </div>
+        </form> -->
+    </body>
+</html>
